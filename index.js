@@ -38,9 +38,11 @@ let notes = [
   },
 ];
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello World!</h1>");
-});
+
+//no use of this route because this route will be used as frontend
+// app.get("/", (req, res) => {
+//   res.send("<h1>Hello World!</h1>");
+// });
 
 app.get("/api/notes", (req, res) => {
   res.json(notes);
