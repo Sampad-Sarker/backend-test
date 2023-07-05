@@ -1,9 +1,7 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
-app.use(express.json());
+const cors = require("cors");
 
-app.use(cors());
 const requestLogger = (request, response, next) => {
   console.log("Method:", request.method);
   console.log("Path:  ", request.path);
@@ -16,9 +14,11 @@ const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };
 
-// app.use(express.json());
+app.use(cors());
+app.use(express.json());
 app.use(requestLogger);
 // app.use(unknownEndpoint); //not work properly
+app.use(express.static("dist"));
 
 let notes = [
   {
@@ -38,11 +38,9 @@ let notes = [
   },
 ];
 
-
-//no use of this route because this route will be used as frontend
-// app.get("/", (req, res) => {
-//   res.send("<h1>Hello World!</h1>");
-// });
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World!</h1>");
+});
 
 app.get("/api/notes", (req, res) => {
   res.json(notes);
