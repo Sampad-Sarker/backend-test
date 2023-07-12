@@ -32,8 +32,6 @@ const mongoose = require("mongoose");
 
 // const Note = mongoose.model("Note", noteSchema);
 
-
-
 const requestLogger = (request, response, next) => {
   console.log("Method:", request.method);
   console.log("Path:  ", request.path);
